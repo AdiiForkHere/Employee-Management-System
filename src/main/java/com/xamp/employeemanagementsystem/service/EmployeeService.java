@@ -9,11 +9,15 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
+
+    // =========================
+    // CRUD Operations
+    // =========================
 
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
@@ -24,10 +28,31 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).get();
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found with id : " + id));
     }
 
     public void deleteEmployeeById(Long id) {
         employeeRepository.deleteById(id);
+    }
+
+    // =========================
+    // Dashboard Statistics
+    // =========================
+
+    public long getTotalEmployees() {
+        return employeeRepository.count();
+    }
+
+    public long getActiveEmployees() {
+        return employeeRepository.countByStatus("Active");
+    }
+
+    public long getTotalDepartments() {
+        return employeeRepository.countDistinctDepartments();
+    }
+
+    public Double getTotalPayroll() {
+        return employeeRepository.getTotalPayroll();
     }
 }

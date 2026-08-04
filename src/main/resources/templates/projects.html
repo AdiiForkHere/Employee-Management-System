@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>EMS</h2>
+
+        <ul>
+            <li><a th:href="@{/employees}">Dashboard</a></li>
+            <li><a th:href="@{/employees}">Employees</a></li>
+            <li><a th:href="@{/departments}">Departments</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/reports}">Reports</a></li>
+            <li><a th:href="@{/settings}">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="topbar">
+            <h2>Projects</h2>
+        </div>
+
+        <div class="table-container">
+            <h3>Project Module</h3>
+
+            <p>This module is under development.</p>
+
+            <ul>
+                <li>Create Projects</li>
+                <li>Assign Employees</li>
+                <li>Track Progress</li>
+                <li>Manage Deadlines</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Employee Management System</title>
+    <title>Department Management System</title>
 
     <!-- Bootstrap -->
 
@@ -101,11 +101,11 @@
 
                 <div>
 
-                    <h2>Employee Dashboard</h2>
+                    <h2>Department Dashboard</h2>
 
                     <p>
 
-                        Manage all employees efficiently
+                        Manage all departments efficiently
 
                     </p>
 
@@ -161,9 +161,8 @@
 
                     <div>
 
-                        <small>Total Employees</small>
-
-                        <h3 th:text="${totalEmployees}">0</h3>
+                        <small>Total Departments</small>
+                        <h3 th:text="${departments.size()}">0</h3>
 
                     </div>
 
@@ -181,10 +180,8 @@
 
                     <div>
 
-                        <small>Active Employees</small>
-
-                        <h3 th:text="${activeEmployees}">0</h3>
-
+                        <small>Department Managers</small>
+                        <h3 th:text="${departments.size()}">0</h3>
                     </div>
 
                 </div>
@@ -200,9 +197,8 @@
 
                     <div>
 
-                        <small>Departments</small>
-
-                        <h3 th:text="${departmentCount}">0</h3>
+                        <small>Department Codes</small>
+                        <h3 th:text="${departments.size()}">0</h3>
 
                     </div>
 
@@ -220,9 +216,9 @@
 
                     <div>
 
-                        <small>Total Payroll</small>
+                        <small>Total Records</small>
 
-                        <h3>₹ <span th:text="${totalPayroll}">0</span></h3>
+                        <h3 th:text="${departments.size()}">0</h3>
 
                     </div>
 
@@ -238,17 +234,16 @@
 
                     <div>
 
-                        <h2>Employee Directory</h2>
-
-                        <p>Manage all employee records</p>
+                        <h2>Department Directory</h2>
+                        <p>Manage all department records</p>
 
                     </div>
 
-                    <a th:href="@{/employees/new}" class="btn btn-primary add-btn">
+                    <a th:href="@{/departments/new}" class="btn btn-primary add-btn">
 
                         <i class="bi bi-plus-circle-fill"></i>
 
-                        Add Employee
+                        Add Department
 
                     </a>
 
@@ -260,7 +255,7 @@
 
                     <i class="bi bi-search"></i>
 
-                    <input type="text" id="searchInput" placeholder="Search employee...">
+                    <input type="text" id="searchInput" placeholder="Search department...">
 
                 </div>
 
@@ -269,80 +264,44 @@
                     <table class="table align-middle">
 
                         <thead>
-
                             <tr>
-
                                 <th>ID</th>
-
-                                <th>First Name</th>
-
-                                <th>Last Name</th>
-
-                                <th>Department</th>
-
-                                <th>Designation</th>
-
-                                <th>Phone</th>
-
-                                <th>Email</th>
-
-                                <th>Salary</th>
-
-                                <th>Joining Date</th>
-
-                                <th>Status</th>
-
+                                <th>Department Name</th>
+                                <th>Department Code</th>
+                                <th>Manager Name</th>
+                                <th>Description</th>
                                 <th>Actions</th>
-
                             </tr>
-
                         </thead>
 
                         <tbody>
 
-                            <tr th:each="employee : ${employees}">
+                            <tr th:each="department : ${departments}">
 
                                 <td>
-                                    <span class="id-badge" th:text="${employee.id}">1</span>
+                                    <span class="id-badge" th:text="${department.id}">1</span>
                                 </td>
 
-                                <td th:text="${employee.firstName}"></td>
+                                <td th:text="${department.departmentName}"></td>
 
-                                <td th:text="${employee.lastName}"></td>
+                                <td th:text="${department.departmentCode}"></td>
 
-                                <td th:text="${employee.department}"></td>
+                                <td th:text="${department.managerName}"></td>
 
-                                <td th:text="${employee.designation}"></td>
-
-                                <td th:text="${employee.phone}"></td>
-
-                                <td th:text="${employee.email}"></td>
-
-                                <td th:text="${employee.salary}"></td>
-
-                                <td th:text="${employee.joiningDate}"></td>
+                                <td th:text="${department.description}"></td>
 
                                 <td>
 
-                                    <span
-                                        th:class="${employee.status == 'Active'} ? 'badge bg-success' : 'badge bg-danger'"
-                                        th:text="${employee.status}">
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <a th:href="@{/employees/edit/{id}(id=${employee.id})}"
+                                    <a th:href="@{/departments/edit/{id}(id=${department.id})}"
                                         class="btn btn-warning btn-sm">
 
                                         <i class="bi bi-pencil-square"></i>
 
                                     </a>
 
-                                    <a th:href="@{/employees/{id}(id=${employee.id})}"
+                                    <a th:href="@{/departments/{id}(id=${department.id})}"
                                         class="btn btn-danger btn-sm ms-2"
-                                        onclick="return confirm('Are you sure you want to delete this employee?')">
+                                        onclick="return confirm('Are you sure you want to delete this department?')">
 
                                         <i class="bi bi-trash-fill"></i>
 
@@ -353,7 +312,6 @@
                             </tr>
 
                         </tbody>
-
                     </table>
 
                 </div>
